@@ -1,9 +1,20 @@
 if mods["space-exploration"] and krastorio.general.isVersionGreaterEqualThan(mods["space-exploration"], "0.3.0") then
-  -- Apply K2 armors grid to the SE armors to have the same grids and equipment categories
-  data.raw.armor["se-thruster-suit"].equipment_grid = "medium-equipment-grid"
-  data.raw.armor["se-thruster-suit-2"].equipment_grid = "large-equipment-grid"
-  data.raw.armor["se-thruster-suit-3"].equipment_grid = "mk3-armor-grid"
-  data.raw.armor["se-thruster-suit-4"].equipment_grid = "mk4-armor-grid"
+  -- -- Apply K2 armors grid to the SE armors to have the same grids and equipment categories
+  -- data.raw.armor["se-thruster-suit"].equipment_grid = "medium-equipment-grid"
+  -- data.raw.armor["se-thruster-suit-2"].equipment_grid = "large-equipment-grid"
+  -- data.raw.armor["se-thruster-suit-3"].equipment_grid = "mk3-armor-grid"
+  -- data.raw.armor["se-thruster-suit-4"].equipment_grid = "mk4-armor-grid"
+
+  -- Apply K2 equipment categories to the SE equipment grids.
+  local function addEquipmentCategories(equipment_grid)
+    table.insert(data.raw["equipment-grid"][equipment_grid].equipment_categories, "universal-equipment")
+    table.insert(data.raw["equipment-grid"][equipment_grid].equipment_categories, "robot-interaction-equipment")
+  end
+
+  addEquipmentCategories("se-thruster-suit-grid")
+  addEquipmentCategories("se-thruster-suit-2-grid")
+  addEquipmentCategories("se-thruster-suit-3-grid")
+  addEquipmentCategories("se-thruster-suit-4-grid")
 
   -- Fix property of SE shields
   -- Energy shield mk5
